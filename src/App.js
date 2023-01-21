@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import {
+  About,
+  BackToTopButton,
+  Contact,
+  Footer,
+  Hero,
+  Navbar,
+  Portifolio,
+  Skills,
+  Stats,
+} from "./components";
 
-function App() {
+const App = () => {
+  const rootDoc = document.querySelector(":root");
+  const [darkMode, setDarkMode] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+  const [slideNavbar, setSlideNavbar] = useState(false);
+
+  window.addEventListener("scroll", () => {
+    window.scrollY > 500 ? setShowButton(true) : setShowButton(false);
+    window.scrollY > 0 ? setSlideNavbar(true) : setSlideNavbar(false);
+  });
+
+  const setDark = () => {
+    setDarkMode(true);
+    rootDoc.classList.add("dark");
+  };
+
+  const setLight = () => {
+    setDarkMode(false);
+    rootDoc.classList.remove("dark");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BackToTopButton showButton={showButton} />
+      <Navbar
+        setLight={setLight}
+        setDark={setDark}
+        darkMode={darkMode}
+        slideNavbar={slideNavbar}
+      />
+      <Hero />
+      <Stats />
+      <About />
+      <Skills />
+      <Portifolio />
+      <Contact />
+      <Footer />
+    </>
   );
-}
+};
 
 export default App;

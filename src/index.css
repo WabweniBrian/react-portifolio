@@ -1,13 +1,155 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Importing Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Mulish&family=Nunito&family=Nunito+Sans:wght@400;600&family=Poppins:ital,wght@0,400;0,500;1,300;1,400&family=Questrial&family=Raleway&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply scroll-smooth scroll-pt-9;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*::-webkit-scrollbar {
+  @apply w-[5px] h-[5px];
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply rounded bg-slate-400;
+}
+
+*::-webkit-scrollbar-track {
+  @apply !bg-transparent;
+}
+
+body {
+  @apply min-h-screen font-poppins text-textColor dark:text-textColorDark bg-mainBg dark:bg-mainBgDark;
+}
+
+.back-to-top-btn {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.back-to-top-btn.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+a {
+  @apply transition-all text-inherit hover:text-primary;
+}
+
+.navbar.scrolled {
+  @apply bg-white dark:bg-lightColorDark shadow-light;
+  animation: scroll 0.3s ease-in-out;
+}
+
+@keyframes scroll {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-link {
+  @apply py-2;
+}
+
+.nav-link a {
+  @apply text-sm hover:!text-primary relative before:absolute before:w-full before:h-[2px] before:bg-primary before:bottom-0 before:left-0 before:scale-0 hover:before:scale-100 before:transition-all before:duration-300;
+}
+
+h1 {
+  @apply capitalize;
+}
+
+p {
+  @apply opacity-70;
+}
+
+.rotate {
+  @apply rotate-90;
+}
+
+.scroll-icon {
+  animation: bounce 1s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateX(-1rem) rotate(90deg);
+  }
+  to {
+    transform: translateX(0) rotate(90deg);
+  }
+}
+
+.heading {
+  @apply relative opacity-70 before:absolute before:bg-gray-500 dark:before:bg-gray-100 before:w-full before:h-[0.2rem] before:left-full before:ml-4 before:top-1/2 before:opacity-70;
+}
+
+.heading {
+  @apply relative after:absolute after:bg-gray-500 dark:after:bg-gray-100 after:w-full after:h-[0.2rem] after:right-full after:mr-4 after:top-1/2 after:opacity-70 md:after:hidden;
+}
+
+.icons {
+  @apply relative before:absolute before:bg-gray-500 dark:before:bg-gray-100 before:w-[0.2rem] before:h-full before:left-1/2 before:mt-4 before:top-full before:opacity-70;
+}
+
+.btn {
+  @apply px-6 py-[0.3rem] uppercase hover:tracking-[0.2rem] transition-all duration-300 before:opacity-70 text-[.9rem];
+}
+
+section {
+  @apply px-[3%] pt-20 md:px-[9%];
+}
+
+.active {
+  @apply bg-primary text-lightColor;
+}
+
+.showMenu {
+  @apply max-h-[100vh] p-4;
+}
+
+.skill-panel {
+  @apply hidden;
+}
+
+.skill-panel img {
+  @apply transition-all duration-300 hover:scale-110;
+}
+
+.tab-btn.show {
+  @apply bg-primary text-lightColor;
+}
+
+.skill-panel.show {
+  display: flex;
+}
+
+.zoom-in {
+  opacity: 0;
+  transform: scale(0.5);
+  animation: zoomIn 0.4s ease-in 1 forwards;
+}
+
+input:autofill,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  @apply input-shadow dark:input-dark-shadow dark:inputAutofillColor;
+}
+
+@keyframes zoomIn {
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
